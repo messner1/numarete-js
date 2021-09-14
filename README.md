@@ -1,5 +1,11 @@
 # numaretejs
 
+
+
+## Summary
+A web simulation of the Numarete shape recognition device produced by the Heinz Von Foerster-led UIUC Biological Computer Laboratory. An early experiment in biology-inspired parallel computing. Live version available <a href=cmessner.me/numarete>here</a>.
+
+
 ## Project setup
 ```
 yarn install

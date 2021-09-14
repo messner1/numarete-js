@@ -11,6 +11,7 @@
       <canvas id="canvas" :height="height" :width="width" @click="canvasClick"></canvas>
       <div>
         <button @click="reset">Reset</button>
+        <button @click="increaseSize">Increase Size</button>
       </div>
       <div id="vis">
         <div id="sumVis">
@@ -78,6 +79,13 @@ export default {
   },
 
   methods: {
+    increaseSize(){
+      this.width += 50
+      this.height += 100
+      this.canvas.width = this.width
+      this.canvas.height = this.height
+      this.reset()
+    },
 
     canvasClick(e){
       if(!this.inshape){
