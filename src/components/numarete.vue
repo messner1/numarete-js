@@ -1,3 +1,4 @@
+
 <template>
 
   <div class="numarete">
@@ -68,7 +69,7 @@ export default {
   mounted () {
     this.canvas = document.getElementById("canvas");
     this.numareteContext = this.canvas.getContext("2d");
-    this.numareteContext.translate(0.5, 0.5);
+
   },
 
   methods: {
@@ -180,6 +181,9 @@ export default {
 
         //sum edges, apply to sum layer. Replace with original approach after getting essay.
 
+        const regexp = /01/g
+        const regexp2 = /10/g
+
         for(var sumNeuron in this.sum_layer){
           var group = []
           var groupNum = 0
@@ -191,15 +195,24 @@ export default {
                group.push(0)
               }
             }
-            var joinedGroup = group.join()
-            var resplit = joinedGroup.split("0")
+            var joinedGroup = group.join('')
+
+            var resplit = [...joinedGroup.matchAll(regexp)]
+            var resplit2 = [...joinedGroup.matchAll(regexp2)]
             console.log(resplit)
+
             for(var groupIndex in resplit){
-              if(resplit[groupIndex].includes("1")){
-                groupNum+=2
+              if(resplit[groupIndex][0] != ""){
+                groupNum+=1
               }
             }
-            //this.sum_layer[sumNeuron] = groupNum
+
+            for(var groupIndex2 in resplit2){
+              if(resplit2[groupIndex2][0] != ""){
+                groupNum+=1
+              }
+            }
+            
             this.$set(this.sum_layer, sumNeuron, groupNum)
 
             console.log(this.sum_layer[sumNeuron])
